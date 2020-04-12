@@ -5,12 +5,12 @@ var cheerio = require('cheerio');
 
 const checkInventory = () => {
     //Paste the url for the product you want
-    const url = "https://www.bestbuy.com/site/nintendo-switch-32gb-console-neon-red-neon-blue-joy-con/6364255.p?skuId=6364255"
+    const url = "https://www.bestbuy.ca/en-ca/product/nintendo-switch-console-with-neon-red-blue-joy-con/13817625"
     //Paste the cookie of your browser when you manually check website with a browser
     const cookie = "";
     //Set up in AWS SES following tutorial
-    const sourceEmailAddr = "xyz@gmail.com";
-    const destinationEmailAddrs = ["abc@qq.com"];
+    const sourceEmailAddr = "mingliu5357@gmail.com";
+    const destinationEmailAddrs = ["mingliu5357@gmail.com""];
     
     const req = {
         url: url,
@@ -29,7 +29,7 @@ const checkInventory = () => {
         const status = $('.fulfillment-add-to-cart-button div button').text().trim();
         console.log("Inventory status: " + status);
         console.log("time: " + (new Date).toUTCString() + "\n");
-        if (status !== "Sold Out") {
+        if ((status == "Add to Cart")){
             var params = {
                 Destination: {
                     ToAddresses: destinationEmailAddrs
